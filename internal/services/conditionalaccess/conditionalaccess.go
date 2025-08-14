@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package conditionalaccess
 
@@ -10,8 +11,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
 	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 )
 
 func schemaConditionalAccessFilter() *pluginsdk.Schema {
@@ -621,14 +622,14 @@ func expandConditionalAccessSessionControls(in []interface{}) *stable.Conditiona
 	}
 
 	applicationEnforcedRestrictions := config["application_enforced_restrictions_enabled"].(bool)
-	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // application enforced restrictions are not allowed for everyTime sign-in frequency see https://github.com/hashicorp/terraform-provider-azuread/issues/1225
+	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // application enforced restrictions are not allowed for everyTime sign-in frequency see https://github.com/valiparsa/terraform-provider-azuread/issues/1225
 		result.ApplicationEnforcedRestrictions = &stable.ApplicationEnforcedRestrictionsSessionControl{
 			IsEnabled: nullable.Value(applicationEnforcedRestrictions),
 		}
 	}
 
 	DisableResilienceDefaults := config["disable_resilience_defaults"].(bool)
-	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // disable resilience defaults are not allowed for everyTime sign-in frequency see https://github.com/hashicorp/terraform-provider-azuread/issues/1225
+	if pointer.From(signInFrequency.FrequencyInterval) != stable.SignInFrequencyInterval_EveryTime { // disable resilience defaults are not allowed for everyTime sign-in frequency see https://github.com/valiparsa/terraform-provider-azuread/issues/1225
 		result.DisableResilienceDefaults = nullable.Value(DisableResilienceDefaults)
 	}
 

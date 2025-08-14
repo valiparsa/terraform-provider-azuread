@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package parse
 
@@ -8,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
 )
 
 type PrivilegedAccessGroupScheduleId struct {

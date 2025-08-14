@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package applications
 
@@ -13,13 +14,13 @@ import (
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/application"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/consistency"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/credentials"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/applications/parse"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/consistency"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/credentials"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/applications/parse"
 )
 
 func applicationCertificateResource() *pluginsdk.Resource {

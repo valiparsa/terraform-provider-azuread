@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package groups
 
@@ -18,10 +19,10 @@ import (
 	memberBeta "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/member"
 	ownerBeta "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/owner"
 	transitivememberBeta "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/transitivemember"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
 )
 
 func groupDataSource() *pluginsdk.Resource {

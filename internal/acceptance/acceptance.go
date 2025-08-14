@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package acceptance
 
@@ -8,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-provider-azuread/internal/provider"
+	"github.com/valiparsa/terraform-provider-azuread/internal/provider"
 )
 
 var AzureADProvider *schema.Provider

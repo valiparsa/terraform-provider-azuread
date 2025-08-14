@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package check
 
@@ -11,11 +12,11 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/helpers"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/testclient"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/types"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/helpers"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/testclient"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/types"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 )
 
 type withTenantType struct {

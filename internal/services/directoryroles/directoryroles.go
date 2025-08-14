@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package directoryroles
 
@@ -11,8 +12,8 @@ import (
 	"github.com/hashicorp/go-azure-helpers/lang/response"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroles/stable/member"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 )
 
 func directoryRoleGetMember(ctx context.Context, client *member.MemberClient, id stable.DirectoryRoleIdMemberId) (*stable.DirectoryObject, error) {

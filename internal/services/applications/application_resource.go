@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package applications
 
@@ -26,15 +27,15 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/hashicorp/go-cty/cty"
 	"github.com/hashicorp/go-uuid"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/applications"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/consistency"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/credentials"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/applications/migrations"
-	applicationsValidate "github.com/hashicorp/terraform-provider-azuread/internal/services/applications/validate"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/applications"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/consistency"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/credentials"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/applications/migrations"
+	applicationsValidate "github.com/valiparsa/terraform-provider-azuread/internal/services/applications/validate"
 )
 
 func applicationResource() *pluginsdk.Resource {
@@ -1127,7 +1128,7 @@ func applicationResourceCreate(ctx context.Context, d *pluginsdk.ResourceData, m
 	api := expandApplicationApi(d.Get("api").([]interface{}))
 
 	// API bug: cannot set `acceptMappedClaims` when holding the Application.ReadWrite.OwnedBy role
-	// See https://github.com/hashicorp/terraform-provider-azuread/issues/914
+	// See https://github.com/valiparsa/terraform-provider-azuread/issues/914
 	var acceptMappedClaims nullable.Type[bool]
 	if api.AcceptMappedClaims.GetOrZero() {
 		acceptMappedClaims = api.AcceptMappedClaims
@@ -1273,7 +1274,7 @@ func applicationResourceCreate(ctx context.Context, d *pluginsdk.ResourceData, m
 	}
 
 	// API bug: cannot set `acceptMappedClaims` when holding the Application.ReadWrite.OwnedBy role
-	// See https://github.com/hashicorp/terraform-provider-azuread/issues/914
+	// See https://github.com/valiparsa/terraform-provider-azuread/issues/914
 	if !acceptMappedClaims.IsNull() && acceptMappedClaims.IsSet() {
 		api.AcceptMappedClaims = acceptMappedClaims
 		if _, err = client.UpdateApplication(ctx, id, stable.Application{Api: api}, application.UpdateApplicationOperationOptions{

@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package approleassignments
 
@@ -17,11 +18,11 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/serviceprincipal"
 	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/approleassignments/migrations"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/approleassignments/migrations"
 )
 
 func appRoleAssignmentResource() *pluginsdk.Resource {

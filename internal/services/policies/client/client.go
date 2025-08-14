@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package client
 
@@ -8,7 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/claimsmappingpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/rolemanagementpolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/rolemanagementpolicyassignment"
-	"github.com/hashicorp/terraform-provider-azuread/internal/common"
+	"github.com/valiparsa/terraform-provider-azuread/internal/common"
 )
 
 type Client struct {

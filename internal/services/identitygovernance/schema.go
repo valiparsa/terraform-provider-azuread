@@ -1,12 +1,13 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package identitygovernance
 
 import (
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/suppress"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/validation"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/suppress"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
 )
 
 func schemaLocalizedContent() *pluginsdk.Resource {

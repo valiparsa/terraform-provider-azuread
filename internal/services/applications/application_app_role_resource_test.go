@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package applications_test
 
@@ -14,10 +15,10 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/application"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/check"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/applications/parse"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/check"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/applications/parse"
 )
 
 type ApplicationAppRoleResource struct{}

@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package identitygovernance_test
 
@@ -13,9 +14,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackagecatalog"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/check"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/check"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
 )
 
 type AccessPackageCatalogResource struct{}

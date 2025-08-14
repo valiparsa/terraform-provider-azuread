@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package consistency
 
@@ -9,7 +10,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 )
 
 type ChangeFunc func(ctx context.Context) (*bool, error)

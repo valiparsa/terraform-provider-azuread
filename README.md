@@ -2,7 +2,14 @@
     <img src=".github/tf.png" alt="Terraform logo" title="Terraform" align="left" height="50" />
 </a>
 
-# Terraform Provider for Azure Active Directory
+# FORKED Terraform Provider for Azure Active Directory
+
+<h1>
+⚠️ This is an independent fork of HashiCorp's terraform-provider-azuread.
+It is not affiliated with or endorsed by HashiCorp.  
+Original project: https://github.com/hashicorp/terraform-provider-azuread
+</h1>
+
 
 **NOTE:** Version 1.0 and above of this provider requires Terraform 0.12 or later.
 

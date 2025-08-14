@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package conditionalaccess_test
 
@@ -13,10 +14,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/lang/response"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccesspolicy"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/check"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/check"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 )
 
 type ConditionalAccessPolicyResource struct{}

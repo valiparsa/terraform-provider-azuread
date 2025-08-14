@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package clients
 
@@ -17,23 +18,23 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/serviceprincipal"
 	"github.com/hashicorp/go-azure-sdk/sdk/claims"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/hashicorp/terraform-provider-azuread/internal/common"
+	"github.com/valiparsa/terraform-provider-azuread/internal/common"
 
-	administrativeunits "github.com/hashicorp/terraform-provider-azuread/internal/services/administrativeunits/client"
-	applications "github.com/hashicorp/terraform-provider-azuread/internal/services/applications/client"
-	approleassignments "github.com/hashicorp/terraform-provider-azuread/internal/services/approleassignments/client"
-	conditionalaccess "github.com/hashicorp/terraform-provider-azuread/internal/services/conditionalaccess/client"
-	directoryobjects "github.com/hashicorp/terraform-provider-azuread/internal/services/directoryobjects/client"
-	directoryroles "github.com/hashicorp/terraform-provider-azuread/internal/services/directoryroles/client"
-	domains "github.com/hashicorp/terraform-provider-azuread/internal/services/domains/client"
-	groups "github.com/hashicorp/terraform-provider-azuread/internal/services/groups/client"
-	identitygovernance "github.com/hashicorp/terraform-provider-azuread/internal/services/identitygovernance/client"
-	invitations "github.com/hashicorp/terraform-provider-azuread/internal/services/invitations/client"
-	policies "github.com/hashicorp/terraform-provider-azuread/internal/services/policies/client"
-	serviceprincipals "github.com/hashicorp/terraform-provider-azuread/internal/services/serviceprincipals/client"
-	synchronization "github.com/hashicorp/terraform-provider-azuread/internal/services/synchronization/client"
-	userflows "github.com/hashicorp/terraform-provider-azuread/internal/services/userflows/client"
-	users "github.com/hashicorp/terraform-provider-azuread/internal/services/users/client"
+	administrativeunits "github.com/valiparsa/terraform-provider-azuread/internal/services/administrativeunits/client"
+	applications "github.com/valiparsa/terraform-provider-azuread/internal/services/applications/client"
+	approleassignments "github.com/valiparsa/terraform-provider-azuread/internal/services/approleassignments/client"
+	conditionalaccess "github.com/valiparsa/terraform-provider-azuread/internal/services/conditionalaccess/client"
+	directoryobjects "github.com/valiparsa/terraform-provider-azuread/internal/services/directoryobjects/client"
+	directoryroles "github.com/valiparsa/terraform-provider-azuread/internal/services/directoryroles/client"
+	domains "github.com/valiparsa/terraform-provider-azuread/internal/services/domains/client"
+	groups "github.com/valiparsa/terraform-provider-azuread/internal/services/groups/client"
+	identitygovernance "github.com/valiparsa/terraform-provider-azuread/internal/services/identitygovernance/client"
+	invitations "github.com/valiparsa/terraform-provider-azuread/internal/services/invitations/client"
+	policies "github.com/valiparsa/terraform-provider-azuread/internal/services/policies/client"
+	serviceprincipals "github.com/valiparsa/terraform-provider-azuread/internal/services/serviceprincipals/client"
+	synchronization "github.com/valiparsa/terraform-provider-azuread/internal/services/synchronization/client"
+	userflows "github.com/valiparsa/terraform-provider-azuread/internal/services/userflows/client"
+	users "github.com/valiparsa/terraform-provider-azuread/internal/services/users/client"
 )
 
 // Client contains the handles to all the specific Azure AD resource classes' respective clients
