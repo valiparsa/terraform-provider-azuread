@@ -1,25 +1,26 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package provider
 
 import (
-	"github.com/hashicorp/terraform-provider-azuread/internal/sdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/administrativeunits"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/applications"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/approleassignments"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/conditionalaccess"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/directoryobjects"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/directoryroles"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/domains"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/groups"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/identitygovernance"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/invitations"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/policies"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/serviceprincipals"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/synchronization"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/userflows"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/users"
+	"github.com/valiparsa/terraform-provider-azuread/internal/sdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/administrativeunits"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/applications"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/approleassignments"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/conditionalaccess"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/directoryobjects"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/directoryroles"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/domains"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/groups"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/identitygovernance"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/invitations"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/policies"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/serviceprincipals"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/synchronization"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/userflows"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/users"
 )
 
 //go:generate go run ../tools/generator-services/main.go -path=../../

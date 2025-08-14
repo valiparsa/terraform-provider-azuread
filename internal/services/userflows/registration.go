@@ -1,9 +1,10 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package userflows
 
-import "github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+import "github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 
 type Registration struct{}
 

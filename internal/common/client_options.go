@@ -1,5 +1,6 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package common
 
@@ -17,7 +18,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/meta"
-	"github.com/hashicorp/terraform-provider-azuread/version"
+	"github.com/valiparsa/terraform-provider-azuread/version"
 )
 
 type contextKey string

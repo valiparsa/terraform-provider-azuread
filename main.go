@@ -1,5 +1,7 @@
 // Copyright (c) HashiCorp, Inc.
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
+// Modifications made on 2025-08-14
 
 package main
 
@@ -7,7 +9,7 @@ import (
 	"flag"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
-	"github.com/hashicorp/terraform-provider-azuread/internal/provider"
+	"github.com/valiparsa/terraform-provider-azuread/internal/provider"
 )
 
 func main() {
@@ -18,7 +20,7 @@ func main() {
 
 	opts := &plugin.ServeOpts{
 		Debug:        false,
-		ProviderAddr: "registry.terraform.io/hashicorp/azuread",
+		ProviderAddr: "registry.terraform.io/GPKbdZZb/forked-azuread",
 		ProviderFunc: provider.AzureADProvider,
 	}
 
