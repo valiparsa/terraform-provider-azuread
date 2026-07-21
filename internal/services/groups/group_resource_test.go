@@ -1,5 +1,6 @@
 // Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package groups_test
 
@@ -537,6 +538,50 @@ func TestAccGroup_writebackUnified(t *testing.T) {
 			),
 		},
 		data.ImportStep("proxy_addresses"),
+	})
+}
+
+func TestAccGroup_delayParameter(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_group", "test")
+	r := GroupResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config: r.withDelayParameter(data, 0),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("0"),
+			),
+		},
+		data.ImportStep(),
+		{
+			Config: r.withDelayParameter(data, 10),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("10"),
+			),
+		},
+		data.ImportStep(),
+		{
+			Config: r.withDelayParameter(data, 120),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("120"),
+			),
+		},
+		data.ImportStep(),
+	})
+}
+
+func TestAccGroup_delayParameterValidation(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_group", "test")
+	r := GroupResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config:      r.withDelayParameter(data, -1),
+			ExpectError: regexp.MustCompile("expected group_name_verification_delay_seconds to be at least"),
+		},
 	})
 }
 

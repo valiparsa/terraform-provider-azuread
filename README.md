@@ -7,7 +7,7 @@
 <h1>
 ⚠️ This is an independent fork of HashiCorp's terraform-provider-azuread.
 It is not affiliated with or endorsed by HashiCorp.  
-Original project: https://github.com/valiparsa/terraform-provider-azuread
+Original project: https://github.com/hashicorp/terraform-provider-azuread
 </h1>
 
 

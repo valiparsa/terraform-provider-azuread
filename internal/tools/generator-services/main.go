@@ -1,5 +1,6 @@
 // Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 
 package main
 
@@ -166,6 +167,7 @@ func (teamCityServicesListGenerator) outputPath(rootDirectory string) string {
 func (teamCityServicesListGenerator) run(outputFileName string, packagesToSkip map[string]struct{}) error {
 	template := `// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
+// Modifications made on 2025-08-14
 // NOTE: this is Generated from the Service Definitions - manual changes will be lost
 //       to re-generate this file, run 'make generate' in the root of the repository
 var services = mapOf(

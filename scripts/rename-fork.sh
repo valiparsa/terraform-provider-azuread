@@ -19,7 +19,7 @@ new_mod='valiparsa/terraform-provider-azuread'
 # 1. Go module / import path (go.mod + all .go files), excluding this script.
 # The grep exits non-zero when nothing matches (already renamed) — tolerate that
 # so the script stays idempotent and reaches step 2.
-git ls-files -z -- . ":(exclude)${self}" \
+git ls-files -z -- . ":(exclude)${self}" ":(exclude)README.md" \
   | { xargs -0 grep -lZ "${old_mod}" 2>/dev/null || true; } \
   | xargs -0 --no-run-if-empty sed -i "s|${old_mod}|${new_mod}|g"
 
