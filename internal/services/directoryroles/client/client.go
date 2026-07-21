@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroledefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroleeligibilityschedule"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroleeligibilityschedulerequest"
-	"github.com/hashicorp/terraform-provider-azuread/internal/common"
+	"github.com/valiparsa/terraform-provider-azuread/internal/common"
 )
 
 type Client struct {

@@ -9,7 +9,7 @@ From version 2.0 the AzureAD provider exclusively uses [Microsoft Graph](https:/
 
 Due to differences between the two APIs, some schema deprecations have already been introduced prior to v2.0 and several fields have been renamed, removed or otherwise changed in v2.0. Please consult the following guide to determine any configuration changes you will need to make in order to upgrade to version 2.0.
 
-We take semantic versioning very seriously which is why these changes have been introduced in a new major version of the provider. You can read up the background behind the API migration and proposed development path in [this GitHub issue](https://github.com/hashicorp/terraform-provider-azuread/issues/323), and follow along with the work being done for v2.0 in the [GitHub milestone](https://github.com/hashicorp/terraform-provider-azuread/milestone/16)
+We take semantic versioning very seriously which is why these changes have been introduced in a new major version of the provider. You can read up the background behind the API migration and proposed development path in [this GitHub issue](https://github.com/valiparsa/terraform-provider-azuread/issues/323), and follow along with the work being done for v2.0 in the [GitHub milestone](https://github.com/valiparsa/terraform-provider-azuread/milestone/16)
 
 In version 1.5.0 or later of the AzureAD provider, limited beta support for Microsoft Graph can be enabled. See [Beta support for Microsoft Graph](#beta-support-for-microsoft-graph-in-v150) for more details.
 
@@ -198,13 +198,13 @@ The legacy `type` field is deprecated and has been removed.
 
 ### Resource: `azuread_application_app_role`
 
-This resource has been removed in version 2.0 of the provider. Limitations of the `azuread_application` resource, that previously necessitated use of this resource, have been resolved in version 2.0. See [this pull request](https://github.com/hashicorp/terraform-provider-azuread/pull/465) for more information about this change.
+This resource has been removed in version 2.0 of the provider. Limitations of the `azuread_application` resource, that previously necessitated use of this resource, have been resolved in version 2.0. See [this pull request](https://github.com/valiparsa/terraform-provider-azuread/pull/465) for more information about this change.
 
 ### Resources: `azuread_application_oauth2_permission` and `azuread_application_oauth2_permission_scope`
 
 In version 1.5.0 of the provider, the `azuread_application_oauth2_permission` resource was deprecated and replaced by the `azuread_application_oauth2_permission_scope` resource.
 
-However, in version 2.0 of the provider, both of these resources have been removed. Limitations of the `azuread_application` resource, that previously necessitated use of these resources, have been resolved in version 2.0. See [this pull request](https://github.com/hashicorp/terraform-provider-azuread/pull/465) for more information about this change.
+However, in version 2.0 of the provider, both of these resources have been removed. Limitations of the `azuread_application` resource, that previously necessitated use of these resources, have been resolved in version 2.0. See [this pull request](https://github.com/valiparsa/terraform-provider-azuread/pull/465) for more information about this change.
 
 ### Resource: `azuread_application_password`
 
@@ -458,4 +458,4 @@ export AAD_USE_MICROSOFT_GRAPH=1
 $env:AAD_USE_MICROSOFT_GRAPH = 1
 ```
 
-We appreciate any feedback you might have whilst using beta support for Microsoft Graph. Bug reports and feature requests can be logged on our [GitHub issue tracker](https://github.com/hashicorp/terraform-provider-azuread/issues), and you can also check out the [project README](https://github.com/hashicorp/terraform-provider-azuread/blob/main/README.md) for information on how to get in touch with the maintainers. If you encounter an issue that has already been reported, please upvote it and comment to add any additional context you might have.
+We appreciate any feedback you might have whilst using beta support for Microsoft Graph. Bug reports and feature requests can be logged on our [GitHub issue tracker](https://github.com/valiparsa/terraform-provider-azuread/issues), and you can also check out the [project README](https://github.com/valiparsa/terraform-provider-azuread/blob/main/README.md) for information on how to get in touch with the maintainers. If you encounter an issue that has already been reported, please upvote it and comment to add any additional context you might have.

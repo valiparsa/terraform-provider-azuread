@@ -7,7 +7,7 @@
 <h1>
 ⚠️ This is an independent fork of HashiCorp's terraform-provider-azuread.
 It is not affiliated with or endorsed by HashiCorp.  
-Original project: https://github.com/hashicorp/terraform-provider-azuread
+Original project: https://github.com/valiparsa/terraform-provider-azuread
 </h1>
 
 
@@ -15,7 +15,7 @@ Original project: https://github.com/hashicorp/terraform-provider-azuread
 
 - [Terraform Website](https://www.terraform.io)
 - [AzureAD Provider Documentation](https://terraform.io/docs/providers/azuread/)
-- [AzureAD Provider Usage Examples](https://github.com/hashicorp/terraform-provider-azuread/tree/main/examples)
+- [AzureAD Provider Usage Examples](https://github.com/valiparsa/terraform-provider-azuread/tree/main/examples)
 - [Learn Tutorial](https://learn.hashicorp.com/tutorials/terraform/azure-ad)
 - [Slack Workspace for Contributors](https://terraform-azure.slack.com) ([Request Invite](https://join.slack.com/t/terraform-azure/shared_invite/zt-3qcv2dj6v-aKas6O6FSBZaxSSZph~Uvg))
 
@@ -89,11 +89,11 @@ For *Git Bash for Windows*, at the step of "Adjusting your PATH environment", pl
 
 If you wish to work on the provider, you'll first need [Go](http://www.golang.org) installed on your machine (version 1.16+ is *required*). You'll also need to correctly setup a [GOPATH](http://golang.org/doc/code.html#GOPATH), as well as adding `$GOPATH/bin` to your `$PATH`.
 
-Clone the repository to: `$GOPATH/src/github.com/hashicorp/terraform-provider-azuread`
+Clone the repository to: `$GOPATH/src/github.com/valiparsa/terraform-provider-azuread`
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/terraform-providers; cd $GOPATH/src/github.com/terraform-providers
-$ git clone https://github.com/hashicorp/terraform-provider-azuread
+$ git clone https://github.com/valiparsa/terraform-provider-azuread
 ```
 
 Change to the clone directory and run `make tools` to install the dependent tooling needed to test and build the provider.

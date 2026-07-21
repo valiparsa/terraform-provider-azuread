@@ -12,8 +12,8 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/domain"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/sdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/sdk"
 )
 
 type DomainsId string

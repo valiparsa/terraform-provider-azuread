@@ -4,7 +4,7 @@ The Azure Provider can be used to configure infrastructure in [Azure Active Dire
 
 In October 2023 [Azure Active Directory was renamed to Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/new-name). All references to both names in this documentation are interchangeable.
 
-Interested in the provider's latest features, or want to make sure you're up to date? Check out the [changelog](https://github.com/hashicorp/terraform-provider-azuread/blob/main/CHANGELOG.md) for version information and release notes.
+Interested in the provider's latest features, or want to make sure you're up to date? Check out the [changelog](https://github.com/valiparsa/terraform-provider-azuread/blob/main/CHANGELOG.md) for version information and release notes.
 
 ## Getting Started
 
@@ -66,14 +66,14 @@ We recommend using either a Service Principal or Managed Identity when running T
 
 ## Features and Bug Requests
 
-Bugs and feature requests can be reported on the [GitHub issues tracker](https://github.com/hashicorp/terraform-provider-azuread/issues). Please avoid "me too" or "+1" comments. Instead, use a thumbs up [reaction](https://blog.github.com/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) on enhancement requests. Provider maintainers will often prioritise work based on the number of thumbs on an issue.
+Bugs and feature requests can be reported on the [GitHub issues tracker](https://github.com/valiparsa/terraform-provider-azuread/issues). Please avoid "me too" or "+1" comments. Instead, use a thumbs up [reaction](https://blog.github.com/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) on enhancement requests. Provider maintainers will often prioritise work based on the number of thumbs on an issue.
 
 Community input is appreciated on outstanding issues! We love to hear what use cases you have for new features, and want to provide the best possible experience for you using the Azure Active Directory provider.
 
 If you have a bug or feature request without an existing issue:
 
-* if an existing resource or field is working in an unexpected way, [file a bug](https://github.com/hashicorp/terraform-provider-azuread/issues/new?template=bug.md).
-* if you'd like the provider to support a new resource or field, [file an enhancement/feature request](https://github.com/hashicorp/terraform-provider-azuread/issues/new?template=enhancement.md).
+* if an existing resource or field is working in an unexpected way, [file a bug](https://github.com/valiparsa/terraform-provider-azuread/issues/new?template=bug.md).
+* if you'd like the provider to support a new resource or field, [file an enhancement/feature request](https://github.com/valiparsa/terraform-provider-azuread/issues/new?template=enhancement.md).
 
 The provider maintainers will often use the assignee field on an issue to mark who is working on it.
 

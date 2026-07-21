@@ -5,7 +5,7 @@ package client
 
 import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/domain"
-	"github.com/hashicorp/terraform-provider-azuread/internal/common"
+	"github.com/valiparsa/terraform-provider-azuread/internal/common"
 )
 
 type Client struct {

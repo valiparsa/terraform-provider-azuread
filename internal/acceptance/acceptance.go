@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/hashicorp/terraform-provider-azuread/internal/provider"
+	"github.com/valiparsa/terraform-provider-azuread/internal/provider"
 )
 
 var AzureADProvider *schema.Provider

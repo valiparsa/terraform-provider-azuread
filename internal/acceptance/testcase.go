@@ -11,10 +11,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/plancheck"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/helpers"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/testclient"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/types"
-	"github.com/hashicorp/terraform-provider-azuread/internal/provider"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/helpers"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/testclient"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/types"
+	"github.com/valiparsa/terraform-provider-azuread/internal/provider"
 )
 
 func (td TestData) DataSourceTest(t *testing.T, steps []TestStep) {

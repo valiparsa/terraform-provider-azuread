@@ -13,9 +13,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackage"
 	"github.com/hashicorp/terraform-plugin-testing/terraform"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance"
-	"github.com/hashicorp/terraform-provider-azuread/internal/acceptance/check"
-	"github.com/hashicorp/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance"
+	"github.com/valiparsa/terraform-provider-azuread/internal/acceptance/check"
+	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
 )
 
 type AccessPackageResource struct{}

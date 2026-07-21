@@ -9,8 +9,8 @@ import (
 	"log"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
-	"github.com/hashicorp/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
-	"github.com/hashicorp/terraform-provider-azuread/internal/services/directoryroles/parse"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
+	"github.com/valiparsa/terraform-provider-azuread/internal/services/directoryroles/parse"
 )
 
 func ResourceDirectoryRoleMemberInstanceResourceV0() *pluginsdk.Resource {
