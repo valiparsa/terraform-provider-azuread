@@ -7,13 +7,35 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
+	"net/http"
 
 	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-helpers/lang/response"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	groupBeta "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/group"
 	memberBeta "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/member"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
+
+// groupCreationWriteRetryFunc retries a write operation against a freshly created group when it fails due to Azure AD
+// replication lag. Two eventual-consistency conditions are tolerated:
+//
+//   - 404 Not Found: the group itself has not yet replicated to the replica serving the request.
+//   - 403 Authorization_RequestDenied: the group has replicated, but the calling principal's authorization context
+//     over it (e.g. the ownership that grants write access) has not, so the replica rejects the write as if the
+//     caller had insufficient privileges.
+//
+// Returning true retries the request; the retry is bounded by the calling operation's context timeout (the resource
+// Create timeout), so replication is given time to catch up rather than failing the apply outright.
+func groupCreationWriteRetryFunc(resp *http.Response, o *odata.OData) (bool, error) {
+	if response.WasNotFound(resp) {
+		return true, nil
+	}
+	if response.WasForbidden(resp) && o != nil && o.Error != nil {
+		return o.Error.Match("Authorization_RequestDenied"), nil
+	}
+	return false, nil
+}
 
 func groupDefaultMailNickname() string {
 	charSet := "0123456789abcdef"

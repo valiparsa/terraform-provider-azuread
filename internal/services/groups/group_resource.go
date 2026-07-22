@@ -740,9 +740,7 @@ func groupResourceCreate(ctx context.Context, d *pluginsdk.ResourceData, meta in
 
 	for _, displayNameToSet := range []string{tempDisplayName, displayName} {
 		updateOptions := groupBeta.UpdateGroupOperationOptions{
-			RetryFunc: func(resp *http.Response, o *odata.OData) (bool, error) {
-				return response.WasNotFound(resp), nil
-			},
+			RetryFunc: groupCreationWriteRetryFunc,
 		}
 		resp, err := client.UpdateGroup(ctx, id, beta.Group{
 			DisplayName: nullable.Value(displayNameToSet),
@@ -790,9 +788,7 @@ func groupResourceCreate(ctx context.Context, d *pluginsdk.ResourceData, meta in
 				return pointer.To(group != nil && !group.Description.IsNull() && group.Description.GetOrZero() != ""), nil
 			}); updated {
 				updateOptions := groupBeta.UpdateGroupOperationOptions{
-					RetryFunc: func(resp *http.Response, o *odata.OData) (bool, error) {
-						return response.WasNotFound(resp), nil
-					},
+					RetryFunc: groupCreationWriteRetryFunc,
 				}
 				resp, err := client.UpdateGroup(ctx, id, beta.Group{
 					Description: nullable.NoZero(""),
