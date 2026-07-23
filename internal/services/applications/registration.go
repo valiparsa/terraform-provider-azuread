@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -59,6 +59,7 @@ func (r Registration) Resources() []sdk.Resource {
 		ApplicationApiAccessResource{},
 		ApplicationAppRoleResource{},
 		ApplicationFallbackPublicClientResource{},
+		flexibleFederatedIdentityCredentialResource{},
 		ApplicationFromTemplateResource{},
 		ApplicationIdentifierUriResource{},
 		ApplicationKnownClientsResource{},

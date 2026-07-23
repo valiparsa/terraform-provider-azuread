@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointSupportedRegionId{}
@@ -101,7 +101,7 @@ func (id DeviceManagementVirtualEndpointSupportedRegionId) Segments() []resource
 // String returns a human-readable description of this Device Management Virtual Endpoint Supported Region ID
 func (id DeviceManagementVirtualEndpointSupportedRegionId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C Supported Region: %q", id.CloudPCSupportedRegionId),
+		fmt.Sprintf("Cloud PC Supported Region: %q", id.CloudPCSupportedRegionId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint Supported Region (%s)", strings.Join(components, "\n"))
 }

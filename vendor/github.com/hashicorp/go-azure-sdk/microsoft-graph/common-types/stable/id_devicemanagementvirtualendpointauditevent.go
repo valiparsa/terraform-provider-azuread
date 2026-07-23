@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointAuditEventId{}
@@ -101,7 +101,7 @@ func (id DeviceManagementVirtualEndpointAuditEventId) Segments() []resourceids.S
 // String returns a human-readable description of this Device Management Virtual Endpoint Audit Event ID
 func (id DeviceManagementVirtualEndpointAuditEventId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C Audit Event: %q", id.CloudPCAuditEventId),
+		fmt.Sprintf("Cloud PC Audit Event: %q", id.CloudPCAuditEventId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint Audit Event (%s)", strings.Join(components, "\n"))
 }

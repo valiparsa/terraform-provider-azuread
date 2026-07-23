@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -203,6 +203,17 @@ func invitationResourceCreate(ctx context.Context, d *pluginsdk.ResourceData, me
 			return tf.ErrorDiagF(err, "Timed out whilst waiting for new guest user to be replicated in Azure AD")
 		}
 		return tf.ErrorDiagF(err, "Failed to patch guest user (2) after creating invitation")
+	}
+
+	if err = consistency.WaitForUpdate(ctx, func(ctx context.Context) (*bool, error) {
+		if u, err := userClient.GetUser(ctx, userId, user.DefaultGetUserOperationOptions()); err != nil {
+			if !response.WasNotFound(u.HttpResponse) {
+				return pointer.To(false), fmt.Errorf("update invitation for %s: %+v", userId, err)
+			}
+		}
+		return pointer.To(true), nil
+	}); err != nil {
+		return tf.ErrorDiagF(err, "Waiting for creation of invited %s", userId)
 	}
 
 	return invitationResourceRead(ctx, d, meta)

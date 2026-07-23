@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointDeviceImageId{}
@@ -101,7 +101,7 @@ func (id DeviceManagementVirtualEndpointDeviceImageId) Segments() []resourceids.
 // String returns a human-readable description of this Device Management Virtual Endpoint Device Image ID
 func (id DeviceManagementVirtualEndpointDeviceImageId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C Device Image: %q", id.CloudPCDeviceImageId),
+		fmt.Sprintf("Cloud PC Device Image: %q", id.CloudPCDeviceImageId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint Device Image (%s)", strings.Join(components, "\n"))
 }

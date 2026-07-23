@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -826,7 +826,6 @@ func buildPolicyForUpdate(metadata *sdk.ResourceMetaData, policy *stable.Unified
 		}
 
 		if existingRule, ok := policyRules["AuthenticationContext_EndUser_Assignment"].(stable.UnifiedRoleManagementPolicyAuthenticationContextRule); ok {
-			rule.ClaimValue = existingRule.ClaimValue
 			rule.Target = existingRule.Target
 		}
 

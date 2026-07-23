@@ -45,7 +45,7 @@ generate:
 
 goimports:
 	@echo "==> Fixing imports code with goimports..."
-	goimports -local "github.com/hashicorp/terraform-provider-azuread" -w internal/
+	goimports -local "github.com/valiparsa/terraform-provider-azuread" -w internal/
 
 lint:
 	@echo "==> Checking source code against linters..."
@@ -88,10 +88,10 @@ test: fmtcheck
 	@TEST=$(TEST) ./scripts/run-test.sh
 
 testacc: fmtcheck
-	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 180m -ldflags="-X=github.com/hashicorp/terraform-provider-azuread/version.ProviderVersion=acc"
+	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 180m -ldflags="-X=github.com/valiparsa/terraform-provider-azuread/version.ProviderVersion=acc"
 
 acctests: fmtcheck
-	TF_ACC=1 go test -v ./internal/services/$(SERVICE)/ $(TESTARGS) -timeout $(TESTTIMEOUT) -ldflags="-X=github.com/hashicorp/terraform-provider-azuread/version.ProviderVersion=acc"
+	TF_ACC=1 go test -v ./internal/services/$(SERVICE)/ $(TESTARGS) -timeout $(TESTTIMEOUT) -ldflags="-X=github.com/valiparsa/terraform-provider-azuread/version.ProviderVersion=acc"
 
 debugacc: fmtcheck
 	TF_ACC=1 dlv test $(TEST) --headless --listen=:2345 --api-version=2 -- -test.v $(TESTARGS)

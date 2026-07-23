@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &UserIdDriveIdRootListItemActivityId{}
@@ -119,7 +119,7 @@ func (id UserIdDriveIdRootListItemActivityId) String() string {
 	components := []string{
 		fmt.Sprintf("User: %q", id.UserId),
 		fmt.Sprintf("Drive: %q", id.DriveId),
-		fmt.Sprintf("Item Activity O L D: %q", id.ItemActivityOLDId),
+		fmt.Sprintf("Item Activity OLD: %q", id.ItemActivityOLDId),
 	}
 	return fmt.Sprintf("User Id Drive Id Root List Item Activity (%s)", strings.Join(components, "\n"))
 }

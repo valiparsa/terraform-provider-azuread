@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -45,9 +45,9 @@ func groupWithoutMembersResource() *pluginsdk.Resource {
 		CustomizeDiff: groupWithoutMembersResourceCustomizeDiff,
 
 		Timeouts: &pluginsdk.ResourceTimeout{
-			Create: pluginsdk.DefaultTimeout(20 * time.Minute),
+			Create: pluginsdk.DefaultTimeout(30 * time.Minute),
 			Read:   pluginsdk.DefaultTimeout(5 * time.Minute),
-			Update: pluginsdk.DefaultTimeout(20 * time.Minute),
+			Update: pluginsdk.DefaultTimeout(30 * time.Minute),
 			Delete: pluginsdk.DefaultTimeout(5 * time.Minute),
 		},
 
@@ -320,6 +320,8 @@ func groupWithoutMembersResource() *pluginsdk.Resource {
 
 func groupWithoutMembersResourceCustomizeDiff(ctx context.Context, diff *pluginsdk.ResourceDiff, meta interface{}) error {
 	client := meta.(*clients.Client).Groups.GroupClientBeta
+	ctx, cancel := context.WithTimeout(ctx, time.Minute*5)
+	defer cancel()
 
 	// Check for duplicate names
 	oldDisplayName, newDisplayName := diff.GetChange("display_name")
@@ -712,9 +714,7 @@ func groupWithoutMembersResourceCreate(ctx context.Context, d *pluginsdk.Resourc
 
 	for _, displayNameToSet := range []string{tempDisplayName, displayName} {
 		updateOptions := groupBeta.UpdateGroupOperationOptions{
-			RetryFunc: func(resp *http.Response, o *odata.OData) (bool, error) {
-				return response.WasNotFound(resp), nil
-			},
+			RetryFunc: groupCreationWriteRetryFunc,
 		}
 		resp, err := client.UpdateGroup(ctx, id, beta.Group{
 			DisplayName: nullable.Value(displayNameToSet),
@@ -762,9 +762,7 @@ func groupWithoutMembersResourceCreate(ctx context.Context, d *pluginsdk.Resourc
 				return pointer.To(group != nil && !group.Description.IsNull() && group.Description.GetOrZero() != ""), nil
 			}); updated {
 				updateOptions := groupBeta.UpdateGroupOperationOptions{
-					RetryFunc: func(resp *http.Response, o *odata.OData) (bool, error) {
-						return response.WasNotFound(resp), nil
-					},
+					RetryFunc: groupCreationWriteRetryFunc,
 				}
 				resp, err := client.UpdateGroup(ctx, id, beta.Group{
 					Description: nullable.NoZero(""),

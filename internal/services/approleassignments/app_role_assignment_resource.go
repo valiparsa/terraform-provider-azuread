@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -19,6 +19,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/valiparsa/terraform-provider-azuread/internal/clients"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/consistency"
 	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf"
 	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/validation"
@@ -155,6 +156,25 @@ func appRoleAssignmentResourceCreate(ctx context.Context, d *pluginsdk.ResourceD
 
 	id := stable.NewServicePrincipalIdAppRoleAssignedToID(appRoleAssignment.ResourceId.GetOrZero(), pointer.From(appRoleAssignment.Id))
 	d.SetId(id.ID())
+
+	// Wait for the newly created assignment to be consistently readable before returning. Azure AD replicates
+	// writes asynchronously, so an immediate read (including the one performed by the Read function below) can hit
+	// a replica that does not yet have the assignment and return 404. That would cause the Read to blank the ID and
+	// Terraform to report "Provider produced inconsistent result after apply: Root object was present, but now
+	// absent". Polling here until the assignment is visible - bounded by the create timeout - lets replication catch
+	// up so the subsequent Read succeeds.
+	if err := consistency.WaitForUpdate(ctx, func(ctx context.Context) (*bool, error) {
+		resp, err := client.GetAppRoleAssignedTo(ctx, id, approleassignedto.DefaultGetAppRoleAssignedToOperationOptions())
+		if err != nil {
+			if response.WasNotFound(resp.HttpResponse) {
+				return pointer.To(false), nil
+			}
+			return nil, err
+		}
+		return pointer.To(resp.Model != nil), nil
+	}); err != nil {
+		return tf.ErrorDiagF(err, "Waiting for creation of %s", id)
+	}
 
 	return appRoleAssignmentResourceRead(ctx, d, meta)
 }

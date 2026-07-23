@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointProvisioningPolicyId{}
@@ -101,7 +101,7 @@ func (id DeviceManagementVirtualEndpointProvisioningPolicyId) Segments() []resou
 // String returns a human-readable description of this Device Management Virtual Endpoint Provisioning Policy ID
 func (id DeviceManagementVirtualEndpointProvisioningPolicyId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C Provisioning Policy: %q", id.CloudPCProvisioningPolicyId),
+		fmt.Sprintf("Cloud PC Provisioning Policy: %q", id.CloudPCProvisioningPolicyId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint Provisioning Policy (%s)", strings.Join(components, "\n"))
 }

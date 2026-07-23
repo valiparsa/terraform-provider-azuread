@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointExternalPartnerSettingId{}
@@ -101,7 +101,7 @@ func (id DeviceManagementVirtualEndpointExternalPartnerSettingId) Segments() []r
 // String returns a human-readable description of this Device Management Virtual Endpoint External Partner Setting ID
 func (id DeviceManagementVirtualEndpointExternalPartnerSettingId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C External Partner Setting: %q", id.CloudPCExternalPartnerSettingId),
+		fmt.Sprintf("Cloud PC External Partner Setting: %q", id.CloudPCExternalPartnerSettingId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint External Partner Setting (%s)", strings.Join(components, "\n"))
 }

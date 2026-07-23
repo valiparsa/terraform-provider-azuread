@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -28,7 +28,8 @@ import (
 
 func applicationUpdateRetryFunc() client.RequestRetryFunc {
 	return func(resp *http.Response, o *odata.OData) (bool, error) {
-		if response.WasNotFound(resp) {
+		// inconsistent state on this resource can result in a 409 Conflict being returned, in this exception case we retry as per the service design, see  https://github.com/valiparsa/terraform-provider-azuread/issues/1764#issuecomment-3282278691 for more information.
+		if response.WasNotFound(resp) || response.WasConflict(resp) {
 			return true, nil
 		} else if response.WasBadRequest(resp) && o != nil && o.Error != nil {
 			return o.Error.Match("Permission (scope or role) cannot be deleted or updated unless disabled first"), nil

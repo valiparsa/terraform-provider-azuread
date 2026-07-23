@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointUserSettingIdAssignmentId{}
@@ -109,8 +109,8 @@ func (id DeviceManagementVirtualEndpointUserSettingIdAssignmentId) Segments() []
 // String returns a human-readable description of this Device Management Virtual Endpoint User Setting Id Assignment ID
 func (id DeviceManagementVirtualEndpointUserSettingIdAssignmentId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C User Setting: %q", id.CloudPCUserSettingId),
-		fmt.Sprintf("Cloud P C User Setting Assignment: %q", id.CloudPCUserSettingAssignmentId),
+		fmt.Sprintf("Cloud PC User Setting: %q", id.CloudPCUserSettingId),
+		fmt.Sprintf("Cloud PC User Setting Assignment: %q", id.CloudPCUserSettingAssignmentId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint User Setting Id Assignment (%s)", strings.Join(components, "\n"))
 }

@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointReportExportJobId{}
@@ -102,7 +102,7 @@ func (id DeviceManagementVirtualEndpointReportExportJobId) Segments() []resource
 // String returns a human-readable description of this Device Management Virtual Endpoint Report Export Job ID
 func (id DeviceManagementVirtualEndpointReportExportJobId) String() string {
 	components := []string{
-		fmt.Sprintf("Cloud P C Export Job: %q", id.CloudPCExportJobId),
+		fmt.Sprintf("Cloud PC Export Job: %q", id.CloudPCExportJobId),
 	}
 	return fmt.Sprintf("Device Management Virtual Endpoint Report Export Job (%s)", strings.Join(components, "\n"))
 }

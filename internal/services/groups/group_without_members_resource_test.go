@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -65,7 +65,7 @@ func TestAccGroupWithoutMembers_completeUnified(t *testing.T) {
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"), // additional entries added by Azure Test Tenant enforced settings
 	})
 }
 
@@ -80,28 +80,28 @@ func TestAccGroupWithoutMembers_updateUnified(t *testing.T) {
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.unified(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.completeUnified(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.unified(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("owners"),
 	})
 }
 
@@ -177,7 +177,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("1"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withOneOwner(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -185,7 +185,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("1"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withThreeOwners(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -193,7 +193,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("3"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withOneOwner(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -201,7 +201,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("1"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withServicePrincipalOwner(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -209,7 +209,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("1"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withDiverseOwners(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -217,7 +217,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("2"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.removeOwners(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -225,7 +225,7 @@ func TestAccGroupWithoutMembers_owners(t *testing.T) {
 				check.That(data.ResourceName).Key("owners.#").HasValue("0"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 	})
 }
 
@@ -291,21 +291,21 @@ func TestAccGroupWithoutMembers_unifiedExtraSettings(t *testing.T) {
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.unifiedAsUser(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.unifiedWithExtraSettings(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 	})
 }
 
@@ -329,14 +329,14 @@ func TestAccGroupWithoutMembers_visibility(t *testing.T) {
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"), // additional entries added by Azure Test Tenant enforced settings
 		{
 			Config: r.visibility(data, "Public"),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"), // additional entries added by Azure Test Tenant enforced settings
 	})
 }
 
@@ -399,7 +399,7 @@ func TestAccGroupWithoutMembers_writebackUpdate(t *testing.T) {
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.withWriteback(data),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -407,14 +407,14 @@ func TestAccGroupWithoutMembers_writebackUpdate(t *testing.T) {
 				check.That(data.ResourceName).Key("onpremises_group_type").HasValue("UniversalSecurityGroup"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.basic(data),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 	})
 }
 
@@ -430,7 +430,7 @@ func TestAccGroupWithoutMembers_writebackUnified(t *testing.T) {
 				check.That(data.ResourceName).Key("onpremises_group_type").HasValue("UniversalDistributionGroup"),
 			),
 		},
-		data.ImportStep(),
+		data.ImportStep("proxy_addresses"),
 		{
 			Config: r.unifiedWithWriteback(data, "UniversalMailEnabledSecurityGroup"),
 			Check: acceptance.ComposeTestCheckFunc(
@@ -438,7 +438,51 @@ func TestAccGroupWithoutMembers_writebackUnified(t *testing.T) {
 				check.That(data.ResourceName).Key("onpremises_group_type").HasValue("UniversalMailEnabledSecurityGroup"),
 			),
 		},
+		data.ImportStep("proxy_addresses"),
+	})
+}
+
+func TestAccGroupWithoutMembers_delayParameter(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_group_without_members", "test")
+	r := GroupWithoutMembersResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config: r.withDelayParameter(data, 0),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("0"),
+			),
+		},
 		data.ImportStep(),
+		{
+			Config: r.withDelayParameter(data, 5),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("5"),
+			),
+		},
+		data.ImportStep(),
+		{
+			Config: r.withDelayParameter(data, 90),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("group_name_verification_delay_seconds").HasValue("90"),
+			),
+		},
+		data.ImportStep(),
+	})
+}
+
+func TestAccGroupWithoutMembers_delayParameterValidation(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_group_without_members", "test")
+	r := GroupWithoutMembersResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config:      r.withDelayParameter(data, -1),
+			ExpectError: regexp.MustCompile("expected group_name_verification_delay_seconds to be at least"),
+		},
 	})
 }
 

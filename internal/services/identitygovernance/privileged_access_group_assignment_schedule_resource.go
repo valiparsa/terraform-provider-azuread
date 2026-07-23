@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -16,6 +16,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/privilegedaccessgroupassignmentschedulerequest"
 	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/consistency"
 	"github.com/valiparsa/terraform-provider-azuread/internal/helpers/tf/pluginsdk"
 	"github.com/valiparsa/terraform-provider-azuread/internal/sdk"
 	"github.com/valiparsa/terraform-provider-azuread/internal/services/identitygovernance/parse"
@@ -50,6 +51,7 @@ func (r PrivilegedAccessGroupAssignmentScheduleResource) Create() sdk.ResourceFu
 		Timeout: 5 * time.Minute,
 		Func: func(ctx context.Context, metadata sdk.ResourceMetaData) error {
 			client := metadata.Client.IdentityGovernance.PrivilegedAccessGroupAssignmentScheduleRequestClient
+			scheduleClient := metadata.Client.IdentityGovernance.PrivilegedAccessGroupAssignmentScheduleClient
 
 			var model PrivilegedAccessGroupScheduleModel
 			if err := metadata.Decode(&model); err != nil {
@@ -100,6 +102,20 @@ func (r PrivilegedAccessGroupAssignmentScheduleResource) Create() sdk.ResourceFu
 			}
 
 			metadata.SetID(resourceId)
+
+			id := stable.NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleID(resourceId.ID())
+			if err = consistency.WaitForUpdate(ctx, func(ctx context.Context) (*bool, error) {
+				resp, err := scheduleClient.GetPrivilegedAccessGroupAssignmentSchedule(ctx, id, privilegedaccessgroupassignmentschedule.DefaultGetPrivilegedAccessGroupAssignmentScheduleOperationOptions())
+				if err != nil {
+					if response.WasNotFound(resp.HttpResponse) {
+						return pointer.To(false), nil
+					}
+					return nil, fmt.Errorf("waiting for creation of %s: %+v", id, err)
+				}
+				return pointer.To(true), nil
+			}); err != nil {
+				return fmt.Errorf("retrieving %s: %+v", id, err)
+			}
 
 			return nil
 		},
@@ -209,6 +225,7 @@ func (r PrivilegedAccessGroupAssignmentScheduleResource) Update() sdk.ResourceFu
 		Timeout: 5 * time.Minute,
 		Func: func(ctx context.Context, metadata sdk.ResourceMetaData) error {
 			client := metadata.Client.IdentityGovernance.PrivilegedAccessGroupAssignmentScheduleRequestClient
+			scheduleClient := metadata.Client.IdentityGovernance.PrivilegedAccessGroupAssignmentScheduleClient
 
 			resourceId, err := parse.ParsePrivilegedAccessGroupScheduleID(metadata.ResourceData.Id())
 			if err != nil {
@@ -229,7 +246,7 @@ func (r PrivilegedAccessGroupAssignmentScheduleResource) Update() sdk.ResourceFu
 				AccessId:      stable.PrivilegedAccessGroupRelationships(resourceId.Relationship),
 				PrincipalId:   nullable.Value(model.PrincipalId),
 				GroupId:       nullable.Value(resourceId.GroupId),
-				Action:        pointer.To(stable.ScheduleRequestActions_AdminAssign),
+				Action:        pointer.To(stable.ScheduleRequestActions_AdminUpdate),
 				Justification: nullable.NoZero(model.Justification),
 				ScheduleInfo:  schedule,
 			}
@@ -256,6 +273,27 @@ func (r PrivilegedAccessGroupAssignmentScheduleResource) Update() sdk.ResourceFu
 
 			if pointer.From(request.Status) == PrivilegedAccessGroupScheduleRequestStatusFailed {
 				return fmt.Errorf("creating updated assignment schedule request: request is in a failed state")
+			}
+
+			newResourceId, err := parse.ParsePrivilegedAccessGroupScheduleID(request.TargetScheduleId.GetOrZero())
+			if err != nil {
+				return err
+			}
+
+			metadata.SetID(newResourceId)
+
+			id := stable.NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleID(newResourceId.ID())
+			if err = consistency.WaitForUpdate(ctx, func(ctx context.Context) (*bool, error) {
+				resp, err := scheduleClient.GetPrivilegedAccessGroupAssignmentSchedule(ctx, id, privilegedaccessgroupassignmentschedule.DefaultGetPrivilegedAccessGroupAssignmentScheduleOperationOptions())
+				if err != nil {
+					if response.WasNotFound(resp.HttpResponse) {
+						return pointer.To(false), nil
+					}
+					return nil, fmt.Errorf("waiting for update of %s: %+v", id, err)
+				}
+				return pointer.To(true), nil
+			}); err != nil {
+				return fmt.Errorf("retrieving %s: %+v", id, err)
 			}
 
 			return nil

@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -119,6 +119,12 @@ func namedLocationResource() *pluginsdk.Resource {
 						},
 					},
 				},
+			},
+
+			"object_id": {
+				Description: "The object ID of the named location",
+				Type:        pluginsdk.TypeString,
+				Computed:    true,
 			},
 		},
 	}
@@ -262,6 +268,7 @@ func namedLocationResourceRead(ctx context.Context, d *pluginsdk.ResourceData, m
 		}
 
 		tf.Set(d, "display_name", pointer.From(namedLocation.DisplayName))
+		tf.Set(d, "object_id", pointer.From(namedLocation.Id))
 		tf.Set(d, "ip", flattenIPNamedLocation(&namedLocation))
 
 	case stable.CountryNamedLocation:
@@ -270,6 +277,7 @@ func namedLocationResourceRead(ctx context.Context, d *pluginsdk.ResourceData, m
 		}
 
 		tf.Set(d, "display_name", pointer.From(namedLocation.DisplayName))
+		tf.Set(d, "object_id", pointer.From(namedLocation.Id))
 		tf.Set(d, "country", flattenCountryNamedLocation(&namedLocation))
 	}
 

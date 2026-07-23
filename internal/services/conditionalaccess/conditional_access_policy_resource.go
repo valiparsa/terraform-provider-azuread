@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -112,7 +112,21 @@ func conditionalAccessPolicyResource() *pluginsdk.Resource {
 											ValidateFunc: validation.StringIsNotEmpty,
 										},
 									},
+
+									"filter": schemaConditionalAccessFilter(),
 								},
+							},
+						},
+
+						"authentication_flow_transfer_methods": {
+							Type:     pluginsdk.TypeSet,
+							Optional: true,
+							Elem: &pluginsdk.Schema{
+								Type: pluginsdk.TypeString,
+								ValidateFunc: validation.StringInSlice([]string{
+									string(stable.ConditionalAccessTransferMethods_AuthenticationTransfer),
+									string(stable.ConditionalAccessTransferMethods_DeviceCodeFlow),
+								}, false),
 							},
 						},
 

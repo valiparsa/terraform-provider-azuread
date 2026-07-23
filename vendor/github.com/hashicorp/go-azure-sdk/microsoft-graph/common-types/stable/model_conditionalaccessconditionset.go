@@ -1,6 +1,6 @@
 package stable
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConditionalAccessConditionSet struct {
@@ -8,7 +8,7 @@ type ConditionalAccessConditionSet struct {
 	Applications ConditionalAccessApplications `json:"applications"`
 
 	// Authentication flows included in the policy scope.
-	AuthenticationFlows *ConditionalAccessAuthenticationFlows `json:"authenticationFlows,omitempty"`
+	AuthenticationFlows *ConditionalAccessAuthenticationFlows `json:"authenticationFlows"`
 
 	// Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients,
 	// exchangeActiveSync, easSupported, other. Required. The easUnsupported enumeration member will be deprecated in favor

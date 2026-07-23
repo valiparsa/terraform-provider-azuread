@@ -7,7 +7,7 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-// Copyright (c) HashiCorp Inc. All rights reserved.
+// Copyright IBM Corp. 2021, 2025 All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 var _ resourceids.ResourceId = &DeviceManagementUserPfxCertificateId{}
@@ -100,7 +100,7 @@ func (id DeviceManagementUserPfxCertificateId) Segments() []resourceids.Segment 
 // String returns a human-readable description of this Device Management User Pfx Certificate ID
 func (id DeviceManagementUserPfxCertificateId) String() string {
 	components := []string{
-		fmt.Sprintf("User P F X Certificate: %q", id.UserPFXCertificateId),
+		fmt.Sprintf("User PFX Certificate: %q", id.UserPFXCertificateId),
 	}
 	return fmt.Sprintf("Device Management User Pfx Certificate (%s)", strings.Join(components, "\n"))
 }

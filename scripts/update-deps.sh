@@ -6,7 +6,7 @@
 REPO_DIR="$(cd "$(dirname "$0")"/.. && pwd)"
 cd "${REPO_DIR}"
 
-PROVIDER_REPO="hashicorp/terraform-provider-azuread"
+PROVIDER_REPO="valiparsa/terraform-provider-azuread"
 TRUNK="main"
 
 usage() {

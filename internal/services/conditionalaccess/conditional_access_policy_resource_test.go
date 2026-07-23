@@ -1,4 +1,4 @@
-// Copyright (c) HashiCorp, Inc.
+// Copyright IBM Corp. 2014, 2025
 // SPDX-License-Identifier: MPL-2.0
 // Modifications made on 2025-08-14
 
@@ -464,6 +464,42 @@ func (r ConditionalAccessPolicyResource) Exists(ctx context.Context, clients *cl
 	return pointer.To(true), nil
 }
 
+func TestAccConditionalAccessPolicy_namedLocation(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_conditional_access_policy", "test")
+	r := ConditionalAccessPolicyResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config: r.namedLocation(data),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("id").Exists(),
+				check.That(data.ResourceName).Key("display_name").HasValue(fmt.Sprintf("acctest-CONPOLICY-%d", data.RandomInteger)),
+				check.That(data.ResourceName).Key("state").HasValue("disabled"),
+			),
+		},
+		data.ImportStep(),
+	})
+}
+
+func TestAccConditionalAccessPolicy_applicationFilter(t *testing.T) {
+	data := acceptance.BuildTestData(t, "azuread_conditional_access_policy", "test")
+	r := ConditionalAccessPolicyResource{}
+
+	data.ResourceTest(t, r, []acceptance.TestStep{
+		{
+			Config: r.applicationFilter(data),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+				check.That(data.ResourceName).Key("id").Exists(),
+				check.That(data.ResourceName).Key("display_name").HasValue(fmt.Sprintf("acctest-CONPOLICY-%d", data.RandomInteger)),
+				check.That(data.ResourceName).Key("state").HasValue("disabled"),
+			),
+		},
+		data.ImportStep(),
+	})
+}
+
 func (ConditionalAccessPolicyResource) basic(data acceptance.TestData) string {
 	return fmt.Sprintf(`
 provider "azuread" {}
@@ -511,6 +547,8 @@ resource "azuread_conditional_access_policy" "test" {
       included_applications = ["All"]
       excluded_applications = []
     }
+
+    authentication_flow_transfer_methods = ["deviceCodeFlow"]
 
     devices {
       filter {
@@ -1219,6 +1257,77 @@ resource "azuread_conditional_access_policy" "test" {
     sign_in_frequency_interval            = "everyTime" // NOTE: this precludes the use of sign_in_frequency_period etc
     sign_in_frequency_period              = "hours"     // This should fail because sign_in_frequency_interval is set to "everyTime"
     sign_in_frequency                     = 1           // This should fail because sign_in_frequency_interval is set to "everyTime"
+  }
+}
+`, data.RandomInteger)
+}
+
+func (ConditionalAccessPolicyResource) namedLocation(data acceptance.TestData) string {
+	location := NamedLocationResource{}.basicIP(data)
+
+	return fmt.Sprintf(`
+provider "azuread" {}
+
+resource "azuread_conditional_access_policy" "test" {
+  display_name = "acctest-CONPOLICY-%[1]d"
+  state        = "disabled"
+
+  conditions {
+    client_app_types = ["browser"]
+
+    applications {
+      included_applications = ["None"]
+    }
+
+    users {
+      included_users = ["All"]
+      excluded_users = ["GuestsOrExternalUsers"]
+    }
+
+    locations {
+      included_locations = ["All"]
+      excluded_locations = [azuread_named_location.test.object_id]
+    }
+  }
+
+  grant_controls {
+    operator          = "OR"
+    built_in_controls = ["block"]
+  }
+}
+
+%s
+`, data.RandomInteger, location)
+}
+
+func (ConditionalAccessPolicyResource) applicationFilter(data acceptance.TestData) string {
+	return fmt.Sprintf(`
+provider "azuread" {}
+
+resource "azuread_conditional_access_policy" "test" {
+  display_name = "acctest-CONPOLICY-%[1]d"
+  state        = "disabled"
+
+  conditions {
+    client_app_types = ["all"]
+
+    applications {
+      included_applications = ["All"]
+
+      filter {
+        mode = "include"
+        rule = "CustomSecurityAttribute.AzureADProviderTesting_Usage -contains \"Acceptance Tests\""
+      }
+    }
+
+    users {
+      included_users = ["All"]
+    }
+  }
+
+  grant_controls {
+    operator          = "OR"
+    built_in_controls = ["mfa"]
   }
 }
 `, data.RandomInteger)
